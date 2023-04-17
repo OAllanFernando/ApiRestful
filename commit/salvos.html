@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css.css">
+    <title>Commits salvos</title>
+</head>
+
+<body class="site">
+
+    <div class="base">
+
+        <div class="baseum">
+            <div class="centralizador"> Commits salvos</div>
+        </div>
+
+        <form>
+            <div class="cabecalho">
+                <div class="corpo">
+                    <label>Repositório:</label>
+                    <label id="link"></label><br><br>
+
+                    <label >Usuário:</label>
+                    <label id="user"></label><br><br>
+
+                    <label >Número de commits:</label>
+                    <label id="commits"></label><br><br>
+
+                    <label >Data inicial:</label>
+                    <label id="dataini"></label><br><br>
+
+                    <label >Data final:</label>
+                    <label id="datafi"></label><br><br>
+
+                    <label >Percentual de atividade:</label>
+                    <label id="percentual"></label><br><br>
+                    
+                    <label >Resumo:</label>
+                    <label id="resumo"></label><br><br>
+
+
+
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+        <div id="commit" class="botoes">
+
+            <button class="botaoum" onclick="index()">VOLTAR</button>
+            <button class="botaoum" onclick="print(``)">IMPRIMIR</button>
+
+
+
+        </div>
+    </div>
+    
+</body>
+<script src="js.js"></script>
+<script>
+    const url = "http://localhost:8080/commits"
+    const options = {
+        method: 'GET',
+        Headers: {
+
+            'Content-Type': 'application/json',
+        },
+
+
+    }
+
+
+
+
+    fetch(url, options)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            mostraCommits(data);
+        }).catch(error => {
+            console.log("error")
+        });
+
+
+
+
+    function mostraCommits(data){
+        data.forEach(element => {
+            const link = document.getElementById("link");
+            const user = document.getElementById("user");
+            const commit = document.getElementById("commits");
+            const inicial= document.getElementById("dataini");
+            const final = document.getElementById("datafi");
+            const percentual = document.getElementById("percentual");
+            const resumo = document.getElementById("resumo");
+
+            link.innerHTML = element.link;
+            user.innerHTML = element.nome;
+            commit.innerHTML = element.commits;
+            inicial.innerHTML = element.initialDate;
+            final.innerHTML  = element.finalDate;
+            resumo.innerHTML = element.mensagem;
+
+        });
+    }
+</script>
+
+</html>

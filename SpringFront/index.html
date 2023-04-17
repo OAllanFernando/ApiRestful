@@ -10,28 +10,35 @@
 
 <body>
     <script>
-        const url = "http://localhost:8080/alunos"
+        const url = "http://localhost:8080/commits"
         const options = {
             method: 'POST',
-            body:JSON.stringify({
-                nome:"Antonia",
-                dataNascimento: null
+            body: JSON.stringify({
+                nome: "Allan teste",
+                initialDate: null,
+                finalDate: null,
+                commits: 8,
+                link: null,
+                mensagem: null
             }),
-            Headers:{
-                'content-type': 'application/json'
-            }
+            Headers: {
+                'Content-Type': 'application/json', 'charset': 'utf-8',
+            },
+
+
         }
 
 
 
 
-        fetch(url)
+        fetch(url, options)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
             }).catch(error => {
                 console.log("error")
             });
+
 
 
     </script>

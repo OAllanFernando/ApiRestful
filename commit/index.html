@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento</title>
+    <link rel="stylesheet" type="text/css" href="css.css">
+
+</head>
+
+<body class="site">
+
+    <div class="base">
+
+        <div class="baseum">
+            <div class="centralizador"> Gerenciador de desempenho</div>
+        </div>
+
+        <form>
+            <div class="cabecalho">
+                <div class="corpo">
+                    <label>Repositório </label>
+                    <input class="tamanho" type="text" id="repositorio" /> <br /><br />
+
+                    <label>Data Inicial</label>
+                    <input type="date" id="dataInicial" />
+                    <label>Data final</label>
+                    <input type="date" id="dataFinal" /> <br /><br />
+                    <input class="botao" type="submit" value="BUSCAR">
+                </div>
+            </div>
+        </form>
+        <div id="dados" class="esconde">
+
+            <div class="tabela"><label>Data</label></div>
+            <div class="tabela"><label>Quantidade de commits</label></div>
+            <div class="tabela"><label>Mensagens</label></div>
+        </div>
+        <div id="msg" class="esconde">
+            <div class="centralizador">Resumo simplificado</div>
+        </div>
+
+        <div id="msg1" class="esconde">
+            <div>
+                <label>Link: </label>
+                <label id="lin"></label><br><br>
+
+                <label>Usuário: </label>
+                <label id="user"></label><br><br>
+
+                <label>Forks</label>
+                <label id="for"></label> <br><br>
+
+                <label>Estrelas: </label>
+                <label id="star"></label><br><br>
+
+
+                <label>Resumo: </label>
+                <div id="resumo"><br><br></div>
+
+
+
+
+
+
+            </div>
+        </div>
+        <div id="msg2" class="esconde">
+
+
+            <button class="botaoum" onclick="print(``)">IMPRIMIR</button>
+            <button class="botaoum" onclick="CommitSalvos()">SALVOS</button>
+            <button class="botaoum" onclick="salvaTudo()">SALVAR</button>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script src="js.js"></script>
+    
+
+
+
+
+
+
+
+
+</body>
+
+</html>
