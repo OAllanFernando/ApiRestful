@@ -81,18 +81,7 @@
 
 
 
-        // pega datas
-        const dataInicial = document.querySelector("#dataInicial").value;
-        const dataFinal = document.querySelector("#dataFinal").value;
-
-        // calcula percentual
-        function percentual() {
-            var tamanho = this.datas.length - 1;
-            const primeiraData = this.datas[0];
-            const ultimaData = this.datas[tamanho];
-            console.log(ultimaData);
-
-        }
+        
 
 
         // salva o nome do autor do repositório para salvar no banco
@@ -159,6 +148,20 @@
 
         }
 
+        // testa datas
+        console.log(this.datas[0]);
+        console.log(this.datas[datas.length-1]);
+
+        // calcula percentual
+        function percentual() {
+            var tamanho = this.datas[datas.length-1];
+            var primeiraData = this.datas[0];
+            const ultimaData = this.datas[tamanho];
+            
+            
+
+        }
+
 
         // gera o resumo e define em uma cariavel
         var resumao = "";
@@ -203,8 +206,7 @@
             cabecalho.appendChild(mensagem).innerText = 'Mensagens dos commits';
             tabela.appendChild(corpo);
 
-            console.log(this.datas[0]);
-            console.log(this.datas[1]);
+            
 
             var conta = 1;
             commits.forEach(element => {
@@ -268,32 +270,32 @@
         function salvaTudo() {
             const url = "http://localhost:8080/commits"
             const options = {
-                method: 'POST',
+                method: "POST",
+
+                headers: {
+                    "content-type": "application/json"
+                },
                 body: JSON.stringify({
                     nome: nome,
                     link: salvaLink,
+                    initialDate: datas[0],
+                    finalDate: datas[datas.length-1],
                     commits: totalCommit,
                     mensagem: resumao
-                }),
-                Headers: {
-                    'content-type': 'application/json'
-                }
+                })
+                
             }
-
-
-
-
             fetch(url, options)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
+                .then(response => { if (response.status === 200) return response.json();})
+                .then(json => {
+                    console.log(json);
                 }).catch(error => {
                     console.log("error")
                 });
         }
 
 
-        function CommitSalvos() {
+        function commitSalvos() {
             window.location.replace("./salvos.html");
         }
 
